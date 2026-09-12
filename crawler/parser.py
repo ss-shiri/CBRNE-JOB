@@ -1,10 +1,8 @@
-def parse_job_entry(raw_entry):
-    """
-    Normalize a raw job entry into a consistent dictionary structure.
-    """
+def parse_job_entry(entry):
     return {
-        "title": raw_entry.get("title", ""),
-        "organization": raw_entry.get("organization", ""),
-        "location": raw_entry.get("location", ""),
-        "url": raw_entry.get("url", "")
+        "title": entry.get("title", ""),
+        "organization": entry.get("organization", ""),
+        "location": entry.get("location", ""),
+        "url": entry.get("url", ""),
+        "category": entry.get("category", "general")
     }
