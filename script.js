@@ -12,33 +12,42 @@ document.querySelectorAll(".nav-btn").forEach(btn => {
   });
 });
 
-// Demo jobs (replace with crawler output later)
-const demoJobs = [
-  { title: "Biodefense Analyst", org: "Defense Lab", location: "EU", url: "#", category: "bio" },
-  { title: "Chemical Safety Officer", org: "Industrial Plant", location: "Germany", url: "#", category: "chem" },
-  { title: "Radiological Control Tech", org: "Nuclear Facility", location: "NL", url: "#", category: "rad" },
-  { title: "Nuclear Security Analyst", org: "IAEA", location: "Vienna", url: "#", category: "nuc" },
-  { title: "EOD Specialist", org: "Defense Contractor", location: "Global", url: "#", category: "exp" }
-];
+// Load jobs.json
+async function loadJobs() {
+  try {
+    const response = await fetch("jobs.json");
+    const jobs = await response.json();
+    renderJobs(jobs);
+  } catch (err) {
+    console.error("Could not load jobs.json", err);
+  }
+}
 
-function renderJobs() {
+// Render jobs
+function renderJobs(jobs) {
   document.querySelectorAll(".job-list").forEach(list => {
     const cat = list.dataset.category;
     list.innerHTML = "";
 
-    const jobs = cat === "all" ? demoJobs : demoJobs.filter(j => j.category === cat);
+    const filtered =
+      cat === "all" ? jobs : jobs.filter(j => j.category === cat);
 
-    jobs.forEach(job => {
+    if (filtered.length === 0) {
+      list.innerHTML = "<p>No jobs available.</p>";
+      return;
+    }
+
+    filtered.forEach(job => {
       const card = document.createElement("div");
       card.className = "job-card";
       card.innerHTML = `
         <div class="job-title">${job.title}</div>
-        <div class="job-meta">${job.org} · ${job.location}</div>
-        <a href="${job.url}" target="_blank">View job</a>
+        <div class="job-meta">${job.organization} · ${job.location}</div>
+        <a class="job-link" href="${job.url}" target="_blank">View job</a>
       `;
       list.appendChild(card);
     });
   });
 }
 
-renderJobs();
+loadJobs();
