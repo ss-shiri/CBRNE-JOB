@@ -1,0 +1,10 @@
+name: cbrne-job
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - requests
+      - beautifulsoup4
+      - lxml
