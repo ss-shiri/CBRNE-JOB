@@ -1,0 +1,86 @@
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --muted: #666666;
+  --border: #000000;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.site-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.nav-btn.active {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+.category-section {
+  display: none;
+}
+
+.category-section.active {
+  display: block;
+}
+
+.category-label {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.update-note {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.job-card {
+  border: 1px solid var(--border);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+
+.promo-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
