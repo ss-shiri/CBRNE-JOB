@@ -1,37 +1,29 @@
-[
-  {
-    "title": "Biodefense Analyst",
-    "organization": "Defense Lab",
-    "location": "EU / Remote",
-    "url": "https://example.com/job/biodefense",
-    "category": "bio"
-  },
-  {
-    "title": "Chemical Safety Officer",
-    "organization": "Industrial Plant",
-    "location": "Germany",
-    "url": "https://example.com/job/chem-safety",
-    "category": "chem"
-  },
-  {
-    "title": "Radiological Control Technician",
-    "organization": "Nuclear Facility",
-    "location": "Netherlands",
-    "url": "https://example.com/job/rad-tech",
-    "category": "rad"
-  },
-  {
-    "title": "Nuclear Security Analyst",
-    "organization": "IAEA",
-    "location": "Vienna",
-    "url": "https://example.com/job/nuc-analyst",
-    "category": "nuc"
-  },
-  {
-    "title": "EOD / CBRNE Specialist",
-    "organization": "Defense Contractor",
-    "location": "Global",
-    "url": "https://example.com/job/eod-cbrne",
-    "category": "exp"
-  }
-]
+import json
+from collectors.linkedin_collector import collect_from_linkedin
+from collectors.indeed_collector import collect_from_indeed
+from collectors.usajobs_collector import collect_from_usajobs
+from collectors.eurojobs_collector import collect_from_eurojobs
+from crawler.parser import parse_job_entry
+from crawler.filters import filter_by_keywords
+from crawler.utils import load_keywords
+
+def build():
+    keywords = load_keywords("data/keywords/general_cbrne.txt")
+
+    raw = []
+    raw += collect_from_linkedin()
+    raw += collect_from_indeed()
+    raw += collect_from_usajobs()
+    raw += collect_from_eurojobs()
+
+    cleaned = []
+    for job in raw:
+        parsed = parse_job_entry(job)
+        if filter_by_keywords(parsed, keywords):
+            cleaned.append(parsed)
+
+    with open("jobs.json", "w") as f:
+        json.dump(cleaned, f, indent=2)
+
+if __name__ == "__main__":
+    build()
