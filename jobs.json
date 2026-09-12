@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Biodefense Analyst",
+    "organization": "Defense Lab",
+    "location": "EU / Remote",
+    "url": "https://example.com/job/biodefense",
+    "category": "bio"
+  },
+  {
+    "title": "Chemical Safety Officer",
+    "organization": "Industrial Plant",
+    "location": "Germany",
+    "url": "https://example.com/job/chem-safety",
+    "category": "chem"
+  },
+  {
+    "title": "Radiological Control Technician",
+    "organization": "Nuclear Facility",
+    "location": "Netherlands",
+    "url": "https://example.com/job/rad-tech",
+    "category": "rad"
+  },
+  {
+    "title": "Nuclear Security Analyst",
+    "organization": "IAEA",
+    "location": "Vienna",
+    "url": "https://example.com/job/nuc-analyst",
+    "category": "nuc"
+  },
+  {
+    "title": "EOD / CBRNE Specialist",
+    "organization": "Defense Contractor",
+    "location": "Global",
+    "url": "https://example.com/job/eod-cbrne",
+    "category": "exp"
+  }
+]
