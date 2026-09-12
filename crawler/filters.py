@@ -1,3 +1,3 @@
-def filter_by_keywords(job_text, keywords):
-    job_text = job_text.lower()
-    return any(kw.lower() in job_text for kw in keywords)
+def filter_by_keywords(job, keywords):
+    text = f"{job['title']} {job['organization']} {job['location']}".lower()
+    return any(kw.lower() in text for kw in keywords)
